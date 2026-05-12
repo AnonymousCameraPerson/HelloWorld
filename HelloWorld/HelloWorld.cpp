@@ -49,6 +49,8 @@ int main(int argc, char** argv)
     al_clear_to_color(al_map_rgb(0, 0, 250)); //Sets start color to blue
     al_draw_filled_rectangle(300, 450, 600, 800, al_map_rgb(255, 0, 0));
 	al_draw_filled_circle(400, 600, 400, al_map_rgb(0, 255, 0));
+    al_draw_filled_circle(400, 455, 120, al_map_rgb(0, 128, 0));
+    al_draw_circle(400, 460, 120, al_map_rgb(150, 100, 50), 30);
     al_draw_line(0, height, width, height, al_map_rgb(0, 255, 0), 10);
     al_flip_display();
     al_rest(5); //Lets the display sit for 5 seconds for viewing pleasure
