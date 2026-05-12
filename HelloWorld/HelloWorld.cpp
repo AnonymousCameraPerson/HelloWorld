@@ -1,7 +1,7 @@
 // HelloWorld.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 //Second program in Lecture Notes
-#include <stdio.h>
+/*#include <stdio.h>
 #include <allegro5/allegro.h>
 int main(int argc, char** argv) {
     ALLEGRO_DISPLAY* display = NULL;
@@ -20,10 +20,11 @@ int main(int argc, char** argv) {
     al_destroy_display(display);
     return 0;
 }
+*/
 
 
 
-/* First Porgram in the Lecture Notes
+// First Porgram in the Lecture Notes
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_font.h>
@@ -47,12 +48,13 @@ int main(int argc, char** argv)
     al_init_primitives_addon(); //Allows primitives
     al_clear_to_color(al_map_rgb(0, 0, 250)); //Sets start color to blue
     al_draw_filled_rectangle(300, 450, 600, 800, al_map_rgb(255, 0, 0));
+	al_draw_filled_circle(400, 600, 400, al_map_rgb(0, 255, 0));
     al_draw_line(0, height, width, height, al_map_rgb(0, 255, 0), 10);
     al_flip_display();
-    al_rest(20); //Lets the display sit for 20 seconds for viewing pleasure
+    al_rest(5); //Lets the display sit for 5 seconds for viewing pleasure
     al_destroy_display(display);
 }
-End of first program in Lecture Notes*/
+//End of first program in Lecture Notes
 
 
 /*
