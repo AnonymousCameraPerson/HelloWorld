@@ -21,10 +21,6 @@ int main(int argc, char** argv) {
     return 0;
 }
 */
-
-
-
-// First Porgram in the Lecture Notes
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_font.h>
@@ -32,6 +28,48 @@ int main(int argc, char** argv) {
 #include <time.h>
 #include <stdio.h>
 #include <cstdio>
+int main(int argc, char** argv)
+{
+    ALLEGRO_DISPLAY* display = NULL; //Set up display and sizes for width/height
+    int width = 800;
+    int height = 600;
+    if (!al_init()) { //Checks if allegro can even start
+        fprintf(stderr, "couldn't start allegro");
+        return -1;
+    }
+    display = al_create_display(width, height); //Create display
+    if (!display) { //Checks for display creation
+        fprintf(stderr, "couldn't create display");
+        return -1;
+    }
+    al_init_primitives_addon(); //Allows primitives
+    al_clear_to_color(al_map_rgb(0, 0, 250)); //Sets start color to blue
+    al_draw_filled_circle(400, 760, 550, al_map_rgb(0, 255, 0));
+    //house front
+    al_draw_filled_circle(400, 730, 450, al_map_rgb(255, 255, 124));
+    al_draw_filled_circle(350, 700, 300, al_map_rgb(255, 255, 124));
+    //door
+    al_draw_filled_circle(400, 455, 120, al_map_rgb(0, 128, 0));
+    //door frame
+    al_draw_circle(400, 460, 120, al_map_rgb(150, 100, 50), 30);
+
+    //windows
+    al_draw_circle(590, 420, 45, al_map_rgb(150, 100, 50), 25);
+    al_draw_circle(210, 420, 45, al_map_rgb(150, 100, 50), 25);
+
+    //door knob
+    al_draw_filled_circle(400, 455, 20, al_map_rgb(255, 255, 0));
+    //bar things on house
+	al_draw_filled_rectangle(260, 300, 280, 600, al_map_rgb(150, 100, 50));
+    al_draw_filled_rectangle(520, 300, 540, 600, al_map_rgb(150, 100, 50));
+    al_flip_display();
+    al_rest(20); //Lets the display sit for 20 seconds for viewing pleasure
+    al_destroy_display(display);
+}
+/*
+
+// First Program in the Lecture Notes
+
 
 
 ALLEGRO_COLOR makeColor();
@@ -77,22 +115,8 @@ int main(int argc, char** argv)
         /*
         //al_draw_filled_rectangle(300, 450, 600, 800, al_map_rgb(255, 0, 0));
 //hill
-        al_draw_filled_circle(400, 760, 550, al_map_rgb(0, 255, 0));
-        //house front
-        al_draw_filled_circle(400, 730, 450, al_map_rgb(255, 255, 124));
-        al_draw_filled_circle(350, 700, 300, al_map_rgb(255, 255, 124));
-        //door
-        al_draw_filled_circle(400, 455, 120, al_map_rgb(0, 128, 0));
-        //door frame
-        al_draw_circle(400, 460, 120, al_map_rgb(150, 100, 50), 30);
-
-        //windows
-        al_draw_circle(590, 420, 45, al_map_rgb(150, 100, 50), 25);
-        al_draw_circle(210, 420, 45, al_map_rgb(150, 100, 50), 25);
-
-        //door knob
-        al_draw_filled_circle(400, 455, 20, al_map_rgb(255, 255, 0));
-        */
+        
+        
        
 
         if (ev.type == ALLEGRO_EVENT_KEY_UP) {
@@ -109,7 +133,7 @@ int main(int argc, char** argv)
 		else if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
 			done = true;
 		}
-		draw_random_pixel(makeColor(), width, height);
+		/*draw_random_pixel(makeColor(), width, height);
         draw_random_lines(makeColor(), width, height);
         draw_random_rectangles(makeColor(), width, height);
         draw_random_filled_rectangles(makeColor(), width, height);
@@ -119,7 +143,8 @@ int main(int argc, char** argv)
         draw_random_ellipse(makeColor(), width, height);
         draw_random_filled_ellipse(makeColor(), width, height);
         al_draw_line(width/2, height/2, width, height, makeColor(), 5);
-
+        
+  
 
         al_flip_display();
         if (clear == true) {
@@ -134,7 +159,7 @@ int main(int argc, char** argv)
 
     return 0;
 }
-
+*/
 ALLEGRO_COLOR makeColor() {
 	int red = rand() % 255; //Random red value
 	int green = rand() % 255; //Random green value
