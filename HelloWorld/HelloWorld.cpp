@@ -43,7 +43,7 @@ void draw_random_circles(ALLEGRO_COLOR color, const int width, const int height)
 void draw_random_filled_circles(ALLEGRO_COLOR color, const int width, const int height);
 void draw_random_filled_triangles(ALLEGRO_COLOR color, const int width, const int height);
 void draw_random_ellipse(ALLEGRO_COLOR color, const int width, const int height);
-void draw_random_filled_ellips(ALLEGRO_COLOR color, const int width, const int height);
+void draw_random_filled_ellipse(ALLEGRO_COLOR color, const int width, const int height);
 
 
 int main(int argc, char** argv)
@@ -110,8 +110,17 @@ int main(int argc, char** argv)
 			done = true;
 		}
 		draw_random_pixel(makeColor(), width, height);
-
+        draw_random_lines(makeColor(), width, height);
+        draw_random_rectangles(makeColor(), width, height);
+        draw_random_filled_rectangles(makeColor(), width, height);
+        draw_random_circles(makeColor(), width, height);
+        draw_random_filled_circles(makeColor(), width, height);
+        draw_random_filled_triangles(makeColor(), width, height);
+        draw_random_ellipse(makeColor(), width, height);
+        draw_random_filled_ellipse(makeColor(), width, height);
         al_draw_line(width/2, height/2, width, height, makeColor(), 5);
+
+
         al_flip_display();
         if (clear == true) {
             al_clear_to_color(al_map_rgb(0, 0, 0)); //Sets start color to black
@@ -141,8 +150,12 @@ void draw_random_pixel(ALLEGRO_COLOR color, const int SCREEN_W, const int SCREEN
 void draw_random_ellipse(ALLEGRO_COLOR color, const int SCREEN_W, const int SCREEN_H) {
 	int x = 200-rand() % (SCREEN_W - 200);
 	int y = 300+rand() % (SCREEN_H - 300);
-	int rx = rand() % x;
-	int ry = rand() % y;
+    if (x < 1) x = 100;
+    if (y < 1) y = 100;
+	int rx = rand() % (x-101);
+    int ry = rand() % (y - 101);
+    if (rx < 1) rx = 1;
+    if (ry < 1) ry = 1;
     float thickness = rand() % 5;
 	al_draw_ellipse(x, y, rx, ry, color, thickness);
 }
@@ -150,8 +163,10 @@ void draw_random_ellipse(ALLEGRO_COLOR color, const int SCREEN_W, const int SCRE
 void draw_random_filled_ellipse(ALLEGRO_COLOR color, const int SCREEN_W, const int SCREEN_H) {
 	int x = 200 - rand() % (SCREEN_W - 400);
 	int y = 300 + rand() % (SCREEN_H - 300);
-	int rx = rand() % x;
-	int ry = rand() % y;
+    int rx = rand() % 100;
+	int ry = rand() % 100;
+    if (rx < 1) rx = 1;
+	if (ry < 1) ry = 1;
 	al_draw_filled_ellipse(x, y, rx, ry, color);
 }
 
