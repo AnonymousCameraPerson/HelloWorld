@@ -46,7 +46,7 @@ int main(int argc, char** argv)
     al_clear_to_color(al_map_rgb(144, 213, 255)); //Sets start color to blue
     
     //hill
-    al_draw_filled_circle(400, 700, 550, al_map_rgb(0, 255, 0));
+    al_draw_filled_circle(400, 860, 700, al_map_rgb(0, 255, 0));
     
     //house front
     //al_draw_filled_circle(400, 730, 450, al_map_rgb(255, 255, 124));
