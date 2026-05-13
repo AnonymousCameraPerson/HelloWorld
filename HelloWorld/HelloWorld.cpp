@@ -32,9 +32,23 @@ int main(int argc, char** argv) {
 #include <time.h>
 #include <stdio.h>
 #include <cstdio>
+
+
+ALLEGRO_COLOR makeColor();
+void draw_random_pixel(ALLEGRO_COLOR color, const int width, const int height);
+void draw_random_lines(ALLEGRO_COLOR color, const int width, const int height);
+void draw_random_rectangles(ALLEGRO_COLOR color, const int width, const int height);
+void draw_random_filled_rectangles(ALLEGRO_COLOR color, const int width, const int height);
+void draw_random_circles(ALLEGRO_COLOR color, const int width, const int height);
+void draw_random_filled_circles(ALLEGRO_COLOR color, const int width, const int height);
+void draw_random_filled_triangles(ALLEGRO_COLOR color, const int width, const int height);
+void draw_random_ellipse(ALLEGRO_COLOR color, const int width, const int height);
+void draw_random_filled_ellips(ALLEGRO_COLOR color, const int width, const int height);
+
+
 int main(int argc, char** argv)
 {
-    ALLEGRO_DISPLAY* display = NULL; //Set up display and sizes for width/height
+    ALLEGRO_DISPLAY *display = NULL; //Set up display and sizes for width/height
     int width = 800;
     int height = 600;
     if (!al_init()) { //Checks if allegro can even start
@@ -47,10 +61,11 @@ int main(int argc, char** argv)
         return -1;
     }
     al_init_primitives_addon(); //Allows primitives
+    srand(time(NULL));
     bool clear = false;
     bool done = false;
-    srand(time(NULL));
-    ALLEGRO_EVENT_QUEUE* event_queue = NULL;
+    
+    ALLEGRO_EVENT_QUEUE *event_queue = NULL;
     al_install_keyboard();
 	event_queue = al_create_event_queue();
 	al_register_event_source(event_queue, al_get_keyboard_event_source());
@@ -78,16 +93,7 @@ int main(int argc, char** argv)
         //door knob
         al_draw_filled_circle(400, 455, 20, al_map_rgb(255, 255, 0));
         */
-        
-        draw_random_pixel(makeColor(), width, height);
-        draw_random_lines(makeColor(), width, height);
-        draw_random_rectangles(makeColor(), width, height);
-        draw_random_filled_rectangles(makeColor(), width, height);
-        draw_random_circles(makeColor(), width, height);
-        draw_random_filled_circles(makeColor(), width, height);
-        draw_random_filled_triangles(makeColor(), width, height);
-        draw_random_ellipse(makeColor(), width, height);
-        draw_random_filled_ellipse(makeColor(), width, height);
+       
 
         if (ev.type == ALLEGRO_EVENT_KEY_UP) {
             switch (ev.keyboard.keycode)
@@ -103,12 +109,13 @@ int main(int argc, char** argv)
 		else if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
 			done = true;
 		}
+		draw_random_pixel(makeColor(), width, height);
 
+        al_draw_line(width/2, height/2, width, height, makeColor(), 5);
         al_flip_display();
         if (clear == true) {
-            al_clear_to_color(al_map_rgb(0, 0, 250)); //Sets start color to blue
+            al_clear_to_color(al_map_rgb(0, 0, 0)); //Sets start color to black
             clear = false;
-
         }
 	}
     
@@ -117,6 +124,86 @@ int main(int argc, char** argv)
     al_destroy_display(display);
 
     return 0;
+}
+
+ALLEGRO_COLOR makeColor() {
+	int red = rand() % 255; //Random red value
+	int green = rand() % 255; //Random green value
+	int blue = rand() % 255; //Random blue value
+	return (al_map_rgb(red, green, blue)); //Returns the color
+}
+void draw_random_pixel(ALLEGRO_COLOR color, const int SCREEN_W, const int SCREEN_H) {
+	int x = rand() % (SCREEN_W - 450);
+	int y = rand() % (SCREEN_H - 400);
+    al_put_pixel(x, y, color);
+}
+
+void draw_random_ellipse(ALLEGRO_COLOR color, const int SCREEN_W, const int SCREEN_H) {
+	int x = 200-rand() % (SCREEN_W - 200);
+	int y = 300+rand() % (SCREEN_H - 300);
+	int rx = rand() % x;
+	int ry = rand() % y;
+    float thickness = rand() % 5;
+	al_draw_ellipse(x, y, rx, ry, color, thickness);
+}
+
+void draw_random_filled_ellipse(ALLEGRO_COLOR color, const int SCREEN_W, const int SCREEN_H) {
+	int x = 200 - rand() % (SCREEN_W - 400);
+	int y = 300 + rand() % (SCREEN_H - 300);
+	int rx = rand() % x;
+	int ry = rand() % y;
+	al_draw_filled_ellipse(x, y, rx, ry, color);
+}
+
+void draw_random_lines(ALLEGRO_COLOR color, const int SCREEN_W, const int SCREEN_H) {
+	int x = 400+rand() % (SCREEN_W - 40);
+	int y = 100-rand() % (SCREEN_H - 100);
+	int x1 = 400+rand() % (SCREEN_W - 400);
+	int y1 = 100-rand() % (SCREEN_H - 100);
+	float thickness = rand() % 5;
+	al_draw_line(x, y, x1, y1, color, thickness);
+}
+
+void draw_random_rectangles(ALLEGRO_COLOR color, const int SCREEN_W, const int SCREEN_H) {
+	int x = 400 + rand() % (SCREEN_W - 400);
+	int y = 250 - rand() % (SCREEN_H - 400);
+	int x1 = 400 + rand() % (SCREEN_W - 400);
+	int y1 = 250 - rand() % (SCREEN_H - 400);
+	float thickness = rand() % 5;
+	al_draw_rectangle(x, y, x1, y1, color, thickness);
+}
+
+void draw_random_filled_rectangles(ALLEGRO_COLOR color, const int SCREEN_W, const int SCREEN_H) {
+	int x = 200 - rand() % (SCREEN_W - 200);
+	int y = 250 - rand() % (SCREEN_H - 400);
+	int x1 = 200 - rand() % (SCREEN_W - 200);
+	int y1 = 250 - rand() % (SCREEN_H - 400);
+	al_draw_filled_rectangle(x, y, x1, y1, color);
+}
+
+void draw_random_circles(ALLEGRO_COLOR color, const int SCREEN_W, const int SCREEN_H) {
+	int x = 350 - rand() % (SCREEN_W - 525);
+	int y = 100 - rand() % (SCREEN_H - 400);
+	int radius = rand() % 30;
+	float thickness = rand() % 5;
+	al_draw_circle(x, y, radius, color, thickness);
+}
+
+void draw_random_filled_circles(ALLEGRO_COLOR color, const int SCREEN_W, const int SCREEN_H) {
+	int x = 200 + rand() % (SCREEN_W - 450);
+	int y = 300 + rand() % (SCREEN_H);
+	int radius = rand() % 30;
+	al_draw_filled_circle(x, y, radius, color);
+}
+
+void draw_random_filled_triangles(ALLEGRO_COLOR color, const int SCREEN_W, const int SCREEN_H) {
+	int x1 = 350 - rand() % (SCREEN_W - 500);
+	int y1 = 150 + rand() % (SCREEN_H - 300);
+	int x2 = 350 - rand() % (SCREEN_W - 500);
+	int y2 = 150 + rand() % (SCREEN_H - 300);
+	int x3 = 350 - rand() % (SCREEN_W - 500);
+	int y3 = 150 + rand() % (SCREEN_H - 300);
+	al_draw_filled_triangle(x1, y1, x2, y2, x3, y3, color);
 }
 //End of first program in Lecture Notes
 
