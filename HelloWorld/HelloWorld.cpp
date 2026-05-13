@@ -44,12 +44,19 @@ int main(int argc, char** argv)
     }
     al_init_primitives_addon(); //Allows primitives
     al_clear_to_color(al_map_rgb(0, 0, 250)); //Sets start color to blue
-    al_draw_filled_circle(400, 760, 550, al_map_rgb(0, 255, 0));
+    
+    //hill
+    al_draw_filled_circle(400, 760, 600, al_map_rgb(0, 255, 0));
+    
     //house front
-    al_draw_filled_circle(400, 730, 450, al_map_rgb(255, 255, 124));
-    al_draw_filled_circle(350, 700, 300, al_map_rgb(255, 255, 124));
+    //al_draw_filled_circle(400, 730, 450, al_map_rgb(255, 255, 124));
+    al_draw_filled_rounded_rectangle(270, 320, 530, 700, 20, 20, al_map_rgb(255, 255, 124));
+    al_draw_filled_rounded_rectangle(120, 340, 270, 700, 20, 20, al_map_rgb(255, 255, 124));
+    al_draw_filled_rounded_rectangle(520, 340, 680, 700, 20, 20, al_map_rgb(255, 255, 124));
+    
     //door
     al_draw_filled_circle(400, 455, 120, al_map_rgb(0, 128, 0));
+    
     //door frame
     al_draw_circle(400, 460, 120, al_map_rgb(150, 100, 50), 30);
 
@@ -59,9 +66,19 @@ int main(int argc, char** argv)
 
     //door knob
     al_draw_filled_circle(400, 455, 20, al_map_rgb(255, 255, 0));
+    
     //bar things on house
-	al_draw_filled_rectangle(260, 300, 280, 600, al_map_rgb(150, 100, 50));
-    al_draw_filled_rectangle(520, 300, 540, 600, al_map_rgb(150, 100, 50));
+	al_draw_filled_rectangle(260, 330, 275, 600, al_map_rgb(150, 100, 50));
+    al_draw_filled_rectangle(520, 330, 535, 600, al_map_rgb(150, 100, 50));
+	al_draw_line(245, 330, 395, 310, al_map_rgb(150, 100, 50), 16);
+    al_draw_line(550, 330, 390, 310, al_map_rgb(150, 100, 50), 16);
+    //al_draw_line(155, 350, 250, 350, al_map_rgb(150, 100, 50), 14);
+    //al_draw_line(20, 480, 300, 480, al_map_rgb(150, 100, 50), 14);
+
+    //window panes
+	al_draw_pieslice(210, 420, 40, 0, 190, al_map_rgb(173, 216, 230), 4);
+    al_draw_pieslice(590, 420, 40, 0, 190, al_map_rgb(173, 216, 230), 4);
+
     al_flip_display();
     al_rest(20); //Lets the display sit for 20 seconds for viewing pleasure
     al_destroy_display(display);
