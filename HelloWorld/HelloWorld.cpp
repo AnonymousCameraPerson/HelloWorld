@@ -43,16 +43,16 @@ int main(int argc, char** argv)
         return -1;
     }
     al_init_primitives_addon(); //Allows primitives
-    al_clear_to_color(al_map_rgb(0, 0, 250)); //Sets start color to blue
+    al_clear_to_color(al_map_rgb(144, 213, 255)); //Sets start color to blue
     
     //hill
-    al_draw_filled_circle(400, 760, 600, al_map_rgb(0, 255, 0));
+    al_draw_filled_circle(400, 700, 550, al_map_rgb(0, 255, 0));
     
     //house front
     //al_draw_filled_circle(400, 730, 450, al_map_rgb(255, 255, 124));
     al_draw_filled_rounded_rectangle(270, 320, 530, 700, 20, 20, al_map_rgb(255, 255, 124));
-    al_draw_filled_rounded_rectangle(120, 340, 270, 700, 20, 20, al_map_rgb(255, 255, 124));
-    al_draw_filled_rounded_rectangle(520, 340, 680, 700, 20, 20, al_map_rgb(255, 255, 124));
+    al_draw_filled_rounded_rectangle(80, 340, 270, 700, 20, 20, al_map_rgb(255, 255, 124));
+    al_draw_filled_rounded_rectangle(520, 340, 720, 700, 20, 20, al_map_rgb(255, 255, 124));
     
     //door
     al_draw_filled_circle(400, 455, 120, al_map_rgb(0, 128, 0));
@@ -74,6 +74,11 @@ int main(int argc, char** argv)
     al_draw_line(550, 330, 390, 310, al_map_rgb(150, 100, 50), 16);
     //al_draw_line(155, 350, 250, 350, al_map_rgb(150, 100, 50), 14);
     //al_draw_line(20, 480, 300, 480, al_map_rgb(150, 100, 50), 14);
+    al_draw_line(60, 345, 260, 345, al_map_rgb(150, 100, 50), 16);
+    al_draw_line(115, 337, 115, 700, al_map_rgb(150, 100, 50), 16);
+    al_draw_line(520, 345, 740, 345, al_map_rgb(150, 100, 50), 16);
+    al_draw_line(680, 337, 680, 700, al_map_rgb(150, 100, 50), 16);
+
 
     //window panes
 	al_draw_pieslice(210, 420, 40, 0, 190, al_map_rgb(173, 216, 230), 4);
